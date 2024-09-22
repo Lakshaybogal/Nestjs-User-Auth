@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:14-alpine
+    container_name: user-auth-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: user-auth
+    ports:
+      - '5432:5432' # Map container port to host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
